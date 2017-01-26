@@ -1,0 +1,58 @@
+<div class="container list" ng-controller="ListController as listCtrl">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			    <div class="panel-heading">
+			        <h3 class="panel-title">Realizar tareas</h3>
+			    </div>
+			    <div class="panel-body">
+			        <table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Fecha</th>
+								<th>Acción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-class="{'danger': item.warning}" ng-repeat="item in listCtrl.getIncompleteTasks()">
+								<td>{{ item.name }}</td>
+								<td>{{ item.date | date:'medium'}}</td>
+								<td>
+									<button class="btn btn-success" ng-click="listCtrl.completeTask(item)">Terminada</button>
+									<button class="btn btn-warning" ng-click="listCtrl.deleteTask(item)">Borrar</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			    </div>
+			</div>
+			<div class="panel panel-success">
+			    <div class="panel-heading">
+			        <h3 class="panel-title">Tareas realizadas</h3>
+			    </div>
+			    <div class="panel-body">
+			        <table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Fecha</th>
+								<th>Acción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in listCtrl.getCompletedTasks()">
+								<td>{{ item.name }}</td>
+								<td>{{ item.date | date:'medium'}}</td>
+								<td>
+									<button class="btn btn-success" ng-click="listCtrl.undoTask(item)">Deshacer</button>
+									<button class="btn btn-warning" ng-click="listCtrl.deleteTask(item)">Borrar</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
